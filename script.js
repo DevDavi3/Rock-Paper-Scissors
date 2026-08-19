@@ -18,12 +18,11 @@
     {
         choice = "Rock";
     }
-
+    console.log("Computer :" + choice)
     return choice;
 
 }
 
-console.log(getComputerChoice());
 
 function getHumanChoice()
 {
@@ -46,6 +45,7 @@ function getHumanChoice()
         {
             humanChoice = "Scissor";
         }
+        console.log("Human :" + humanChoice);
 
         return humanChoice;
 
@@ -59,6 +59,57 @@ function getHumanChoice()
     
 }
 
-console.log(getHumanChoice());
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice,computerChoice)
+{
+    let winner = ""
+    //determin the winner
+    if (humanChoice === computerChoice)
+    {
+        winner = "Its a draw"
+    }
+    else if(computerChoice === "Rock" && humanChoice === "Paper")
+    {
+        winner = "Human Wins"
+        humanScore++;
+    }
+    else if(computerChoice === "Paper" && humanChoice === "Rock")
+    {
+        winner = "Computer Wins"
+        computerScore++;
+    }
+
+    else if(computerChoice === "Scissor" && humanChoice === "Paper")
+    {
+        winner = "Computer Wins"
+        computerScore++;
+    }
+    else if(computerChoice === "Paper" && humanChoice === "Scissor")
+    {
+        winner = "Human Wins"
+        humanScore++;
+    }
+
+    else if(computerChoice === "Rock" && humanChoice === "Scissor")
+    {
+        winner = "Computer Wins"
+        computerScore++;
+    }
+    else if(computerChoice === "Scissor" && humanChoice === "Rock")
+    {
+        winner = "Human Wins"
+        humanScore++;
+    }
+    return winner;
+}
+
+console.log(playRound(getHumanChoice(),getComputerChoice()));
+
+
+console.log(humanScore);
+console.log(computerScore);
+
 
 
