@@ -105,11 +105,23 @@ function playRound(humanChoice,computerChoice)
     return winner;
 }
 
-console.log(playRound(getHumanChoice(),getComputerChoice()));
+function playGame()
+{
+    for (let i=0; i<5; i++)
+    {
+        let humanSelection = getHumanChoice();
+        let ComputerSelection = getComputerChoice();
+        playRound(humanSelection,ComputerSelection);
+    }
+    if(humanScore > computerScore)
+    {
+        return "The over all Winner is the Human";
+    }
+    else
+        return "The Computer wins"
+}
 
-
-console.log(humanScore);
-console.log(computerScore);
+console.log(playGame());
 
 
 
