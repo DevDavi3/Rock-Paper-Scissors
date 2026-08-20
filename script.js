@@ -102,6 +102,7 @@ function playRound(humanChoice,computerChoice)
         winner = "Human Wins"
         humanScore++;
     }
+    alert(winner);
     return winner;
 }
 
