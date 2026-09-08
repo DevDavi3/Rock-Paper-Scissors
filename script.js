@@ -1,3 +1,7 @@
+ //get all buttons
+ const buttons = document.querySelectorAll('button');
+ //for each looking for all the value in the buttons
+ //on click and we run player selection
  function getComputerChoice()
 {
     //create varable to keep the random number
@@ -24,10 +28,10 @@
 }
 
 
-function getHumanChoice()
+function getHumanChoice(number)
 {
-    // get prayer choice in form of number 
-    let number = parseInt(prompt("Enter Enter Number 1->rock, 2->paper, 3->scissor"));
+   
+    
     let humanChoice = "";
     //check if the nmber is from 1-3
     if (number > 0 && number <= 3)
@@ -102,27 +106,33 @@ function playRound(humanChoice,computerChoice)
         winner = "Human Wins"
         humanScore++;
     }
-    alert(winner);
+    console.log(winner);
     return winner;
 }
 
-function playGame()
-{
-    for (let i=0; i<5; i++)
-    {
-        let humanSelection = getHumanChoice();
-        let ComputerSelection = getComputerChoice();
-        playRound(humanSelection,ComputerSelection);
-    }
-    if(humanScore > computerScore)
-    {
-        return "The over all Winner is the Human";
-    }
-    else
-        return "The Computer wins"
-}
+buttons.forEach(button=>{
+    button.addEventListener('click', (e)=>{
+        playRound(getHumanChoice(Number(button.value)),getComputerChoice())
+    });
+})
+//playRound(getHumanChoice,getComputerChoice);
+// function playGame()
+// {
+//     for (let i=0; i<5; i++)
+//     {
+//         let humanSelection = getHumanChoice();
+//         let ComputerSelection = getComputerChoice();
+//         playRound(humanSelection,ComputerSelection);
+//     }
+//     if(humanScore > computerScore)
+//     {
+//         return "The over all Winner is the Human";
+//     }
+//     else
+//         return "The Computer wins"
+// }
 
-console.log(playGame());
+// console.log(playGame());
 
 
 
