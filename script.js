@@ -1,7 +1,7 @@
- //get all buttons
  const buttons = document.querySelectorAll('button');
- //for each looking for all the value in the buttons
- //on click and we run player selection
+ const result = document.querySelector('.result')
+ 
+ 
  function getComputerChoice()
 {
     //create varable to keep the random number
@@ -22,11 +22,10 @@
     {
         choice = "Rock";
     }
-    console.log("Computer :" + choice)
+    result.append("Computer :" + choice)
     return choice;
 
 }
-
 
 function getHumanChoice(number)
 {
@@ -49,7 +48,7 @@ function getHumanChoice(number)
         {
             humanChoice = "Scissor";
         }
-        console.log("Human :" + humanChoice);
+        result.append("Human :" + humanChoice + "\n");
 
         return humanChoice;
 
@@ -68,7 +67,11 @@ let computerScore = 0;
 
 function playRound(humanChoice,computerChoice)
 {
+     result.textContent = "";
+
+    
     let winner = ""
+    
     //determin the winner
     if (humanChoice === computerChoice)
     {
@@ -106,33 +109,49 @@ function playRound(humanChoice,computerChoice)
         winner = "Human Wins"
         humanScore++;
     }
-    console.log(winner);
-    return winner;
+
+    const compScore = document.createElement('h3');
+    compScore.textContent = "Computer Scored: " + computerScore
+
+    const humScore = document.createElement('h3');
+    humScore.textContent = "Human Scored: " + humanScore
+    const choices = document.createElement('p');
+    choices.textContent = `Human: ${humanChoice} | Computer: ${computerChoice}`;
+
+
+    result.appendChild(humScore);
+    result.appendChild(compScore);
+    const win = document.createElement('h6')
+    win.textContent = winner
+
+    result.append(win);
+    result.append(choices);
+    
 }
+
 
 buttons.forEach(button=>{
     button.addEventListener('click', (e)=>{
-        playRound(getHumanChoice(Number(button.value)),getComputerChoice())
+        playRound(getHumanChoice(Number(button.value)),getComputerChoice());
+        if (computerScore == 5 || humanScore == 5)
+        {
+            alert(getOverAllWinner(humanScore,computerScore))
+            humanScore = 0
+            computerScore = 0
+        }       
     });
 })
-//playRound(getHumanChoice,getComputerChoice);
-// function playGame()
-// {
-//     for (let i=0; i<5; i++)
-//     {
-//         let humanSelection = getHumanChoice();
-//         let ComputerSelection = getComputerChoice();
-//         playRound(humanSelection,ComputerSelection);
-//     }
-//     if(humanScore > computerScore)
-//     {
-//         return "The over all Winner is the Human";
-//     }
-//     else
-//         return "The Computer wins"
-// }
 
-// console.log(playGame());
+function getOverAllWinner(humanScore,computerScore)
+{
+    if (humanScore === 5)
+    {
+        return "human wins"
+    }
+    else if (computerScore == 5 )
+        return "Computer wins"
+    
+        
 
-
+}
 
