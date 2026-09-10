@@ -136,8 +136,10 @@ buttons.forEach(button=>{
         if (computerScore == 5 || humanScore == 5)
         {
             alert(getOverAllWinner(humanScore,computerScore))
-            humanScore = 0
-            computerScore = 0
+            humanScore = 0;
+            computerScore = 0;
+            result.textContent = "";
+
         }       
     });
 })
@@ -146,7 +148,8 @@ function getOverAllWinner(humanScore,computerScore)
 {
     if (humanScore === 5)
     {
-        return "human wins"
+        return "human wins";
+
     }
     else if (computerScore == 5 )
         return "Computer wins"
